@@ -1,10 +1,11 @@
-
+//async function to fetch quotes and return a callback
 async function RandomQuotes(cb) {
-    let response = await fetch('src/qoutes.json')
+    let response = await fetch('qoutes.json')
     let quotes = await response.json()
     await cb(quotes)
 }
 
+//generate quote on first load
 RandomQuotes((quotes) => {
     let rand = Math.floor(Math.random() * quotes.length)
     let quote = quotes[rand]
@@ -17,6 +18,7 @@ RandomQuotes((quotes) => {
     wrap.innerHTML = template
 })
 
+//generate quote on click
 const btn = document.getElementById('btn')
 btn.onclick = () => {
     RandomQuotes((quotes) => {
